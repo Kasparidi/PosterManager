@@ -12,31 +12,41 @@ public class PosterManagerTest {
     PosterItem first = new PosterItem(1, 2, "first", 1, 1);
     PosterItem second = new PosterItem(2, 2, "second", 2, 2);
     PosterItem third = new PosterItem(3, 3, "third", 3, 3);
+    PosterItem forth = new PosterItem(4, 4, "forth", 4, 4);
+    PosterItem fifth = new PosterItem(5, 5, "fifth", 5, 5);
 
     @BeforeEach
     public void SetUp(){
         manager.add(first);
         manager.add(second);
         manager.add(third);
+        manager.add(forth);
+        manager.add(fifth);
     }
 
     @Test
-    public void removeByID() {
-    int idToRemove = 1;
-    manager.removeById(idToRemove);
-    PosterItem[] actual = manager.getAll();
-    PosterItem[] expected = new PosterItem[] {third, second};
-    assertArrayEquals(expected, actual);
-    }
-
-    @Test
-    public void removeNotRemoveIfNotExist() {
-        PosterManager manager = new PosterManager();
-        int idToRemove = 4;
-        manager.removeById(idToRemove);
+    void shouldAddTen() {
+        manager.getAll();
+        PosterItem sixth = new PosterItem(6, 6, "sixth", 6, 6);
+        PosterItem seventh = new PosterItem(7, 7, "seventh", 7, 7);
+        PosterItem eighth = new PosterItem(8, 8, "eighth", 8, 8);
+        PosterItem ninth = new PosterItem(9, 9, "ninth", 9, 9);
+        PosterItem tenth = new PosterItem(10, 10, "tenth", 10, 10);
+        manager.add(sixth);
+        manager.add(seventh);
+        manager.add(eighth);
+        manager.add(ninth);
+        manager.add(tenth);
         PosterItem[] actual = manager.getAll();
-        PosterItem[] expected = new PosterItem[] {third, second};
+        PosterItem[] expected = new PosterItem[] {tenth, ninth, eighth, seventh, sixth, fifth, forth, third, second, first};
         assertArrayEquals(expected, actual);
+    }
 
+    @Test
+    void shouldAddFive() {
+        manager.getAll();
+        PosterItem[] actual = manager.getAll();
+        PosterItem[] expected = new PosterItem[] {fifth, forth, third, second, first};
+        assertArrayEquals(expected, actual);
     }
 }
