@@ -18,9 +18,8 @@ public class PosterManager {
         PosterItem[] result = new PosterItem[items.length];
         for (int i = 0; i < items.length; i++) {
             int index = items.length - i - 1;
-            if (index <= 9) {
-            }
             result[i] = items[index];
+            if (i >= 9) break;
         }
         return result;
     }

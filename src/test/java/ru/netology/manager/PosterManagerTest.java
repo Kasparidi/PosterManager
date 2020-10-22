@@ -26,7 +26,6 @@ public class PosterManagerTest {
 
     @Test
     void shouldAddTen() {
-        manager.getAll();
         PosterItem sixth = new PosterItem(6, 6, "sixth", 6, 6);
         PosterItem seventh = new PosterItem(7, 7, "seventh", 7, 7);
         PosterItem eighth = new PosterItem(8, 8, "eighth", 8, 8);
@@ -44,9 +43,28 @@ public class PosterManagerTest {
 
     @Test
     void shouldAddFive() {
-        manager.getAll();
         PosterItem[] actual = manager.getAll();
         PosterItem[] expected = new PosterItem[] {fifth, forth, third, second, first};
         assertArrayEquals(expected, actual);
+    }
+
+    @Test
+    void shouldNotAddMoreThanTen() {
+        PosterItem sixth = new PosterItem(6, 6, "sixth", 6, 6);
+        PosterItem seventh = new PosterItem(7, 7, "seventh", 7, 7);
+        PosterItem eighth = new PosterItem(8, 8, "eighth", 8, 8);
+        PosterItem ninth = new PosterItem(9, 9, "ninth", 9, 9);
+        PosterItem tenth = new PosterItem(10, 10, "tenth", 10, 10);
+        PosterItem eleventh = new PosterItem(11, 11, "eleventh", 11, 11);
+        manager.add(sixth);
+        manager.add(seventh);
+        manager.add(eighth);
+        manager.add(ninth);
+        manager.add(tenth);
+        manager.add(eleventh);
+        PosterItem[] actual = manager.getAll();
+        PosterItem[] expected = new PosterItem[] {eleventh, tenth, ninth, eighth, seventh, sixth, fifth, forth, third, second, null};
+        assertArrayEquals(expected, actual);
+
     }
 }
