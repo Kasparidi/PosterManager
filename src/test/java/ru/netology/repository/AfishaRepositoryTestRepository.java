@@ -32,23 +32,23 @@ class AfishaRepositoryTestRepository {
     assertArrayEquals(expected, actual);
     }
 
-//    @Test
-//    void removeById() {
-//        int idToRemove = 3;
-//        afishaRepository.removeById(idToRemove);
-//        AfishaItem[] actual = afishaRepository.findAll();
-//        AfishaItem[] expected = new AfishaItem[] {first, second, forth, fifth};
-//        assertArrayEquals(expected, actual);
-//    }
+    @Test
+    void removeById() {
+        int idToRemove = 3;
+        afishaRepository.removeById(idToRemove);
+        AfishaItem[] actual = afishaRepository.findAll();
+        AfishaItem[] expected = new AfishaItem[] {first, second, forth, fifth};
+        assertArrayEquals(expected, actual);
+    }
 
-//    @Test
-//    void findById() {
-//        int idToFind = 4;
-//        afishaRepository.findById(idToFind);
-//        AfishaItem[] actual = afishaRepository.findAll();
-//        AfishaItem[] expected = new AfishaItem[] {null, null, null, forth, null};
-//        assertArrayEquals(expected, actual);
-//    }
+    @Test
+    void findById() {
+        int idToFind = 4;
+        afishaRepository.findById(idToFind);
+        AfishaItem[] actual = afishaRepository.findAll();
+        AfishaItem[] expected = new AfishaItem[] {null, null, null, forth, null};
+        assertArrayEquals(expected, actual);
+    }
 
 //    @Test
 //    void removeAll() {
