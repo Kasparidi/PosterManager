@@ -26,10 +26,6 @@ public class AfishaManager {
     public void removeById(int id) {
         repository.removeById(id);
     }
-
-    public void findById(int id) {
-        repository.findById(id);
-    }
 }
 
 

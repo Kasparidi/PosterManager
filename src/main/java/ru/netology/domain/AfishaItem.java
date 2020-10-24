@@ -12,6 +12,6 @@ public class AfishaItem {
     private int id;
     private int movieId;
     private String movieName;
-    private int genre;
-    private int data;
+    private String genre;
+    private boolean data;
 }

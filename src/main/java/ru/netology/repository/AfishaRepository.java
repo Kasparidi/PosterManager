@@ -4,7 +4,6 @@ import ru.netology.domain.AfishaItem;
 import ru.netology.manager.AfishaManager;
 
 public class AfishaRepository {
-
     private AfishaItem[] items = new AfishaItem[0];
 
     public void save(AfishaItem item) {
@@ -32,15 +31,16 @@ public class AfishaRepository {
         items = tmp;
     }
 
-    public int findById(int id) {
-        for (AfishaItem item : items) {
-            if (item.getId() == id) {
-                return item;
-            }
-        }
-        return null;
-    }
+//    public int findById(int id) {
+//        for (AfishaItem item : items) {
+//            if (item.getId() == id) {
+//                return item;
+//            }
+//        }
+//        return null;
+//    }
 
     public void removeAll() {
+        items = new AfishaItem[0];
     }
 }
