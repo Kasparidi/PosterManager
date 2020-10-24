@@ -2,13 +2,25 @@ package ru.netology.manager;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
 import ru.netology.domain.AfishaItem;
+import ru.netology.repository.AfishaRepository;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.*;
 
+@ExtendWith(MockitoExtension.class)
 public class AfishaManagerTest {
 
-    AfishaManager manager = new AfishaManager();
+    @Mock
+            private AfishaRepository repository;
+
+    @InjectMocks
+            AfishaManager manager;
+
     AfishaItem first = new AfishaItem(1, 2, "first", 1, 1);
     AfishaItem second = new AfishaItem(2, 2, "second", 2, 2);
     AfishaItem third = new AfishaItem(3, 3, "third", 3, 3);
@@ -24,47 +36,57 @@ public class AfishaManagerTest {
         manager.add(fifth);
     }
 
-    @Test
-    void shouldAddTen() {
-        AfishaItem sixth = new AfishaItem(6, 6, "sixth", 6, 6);
-        AfishaItem seventh = new AfishaItem(7, 7, "seventh", 7, 7);
-        AfishaItem eighth = new AfishaItem(8, 8, "eighth", 8, 8);
-        AfishaItem ninth = new AfishaItem(9, 9, "ninth", 9, 9);
-        AfishaItem tenth = new AfishaItem(10, 10, "tenth", 10, 10);
-        manager.add(sixth);
-        manager.add(seventh);
-        manager.add(eighth);
-        manager.add(ninth);
-        manager.add(tenth);
-        AfishaItem[] actual = manager.getAll();
-        AfishaItem[] expected = new AfishaItem[] {tenth, ninth, eighth, seventh, sixth, fifth, forth, third, second, first};
-        assertArrayEquals(expected, actual);
-    }
+//    @Test
+//    void shouldSave() {
+//        AfishaItem[] returned = new AfishaItem[] {first, second, third, forth, fifth};
+//        doReturn(returned).when(repository).findAll();
+//        doNothing().when(repository).add(AfishaItem);
+//        manager.add(AfishaItem);
+//        AfishaItem[] actual = manager.getAll();
+//        AfishaItem[] expected = new AfishaItem[] {fifth, forth, third, second, first};
+//        assertArrayEquals(expected, actual);
+//    }
 
     @Test
-    void shouldAddFive() {
+    public void shouldRemoveIfExist() {
+        int idToRemove = 1;
+        AfishaItem[] returned = new AfishaItem[] {second,third, forth,fifth};
+        doReturn(returned).when(repository).findAll();
+        doNothing().when(repository).removeById(idToRemove);
+        manager.removeById(idToRemove);
         AfishaItem[] actual = manager.getAll();
-        AfishaItem[] expected = new AfishaItem[] {fifth, forth, third, second, first};
+        AfishaItem[] expected = new AfishaItem[]{fifth, forth, third, second};
         assertArrayEquals(expected, actual);
+
+        verify(repository).removeById(idToRemove);
     }
+
+//    @Test
+//    public void findById() {
+//        int idToFind = 3;
+//        AfishaItem[] returned = new AfishaItem[] {null, null, third, null, null};
+//        doReturn(returned).when(repository).findAll();
+//        doNothing().when(repository).findById(idToFind);
+//        manager.findById(idToFind);
+//        AfishaItem[] actual = manager.getAll();
+//        AfishaItem[] expected = new AfishaItem[] {null, null, third, null, null};
+//        assertArrayEquals(expected, actual);
+//        verify(repository).findById(idToFind);
+//    }
 
     @Test
-    void shouldNotAddMoreThanTen() {
-        AfishaItem sixth = new AfishaItem(6, 6, "sixth", 6, 6);
-        AfishaItem seventh = new AfishaItem(7, 7, "seventh", 7, 7);
-        AfishaItem eighth = new AfishaItem(8, 8, "eighth", 8, 8);
-        AfishaItem ninth = new AfishaItem(9, 9, "ninth", 9, 9);
-        AfishaItem tenth = new AfishaItem(10, 10, "tenth", 10, 10);
-        AfishaItem eleventh = new AfishaItem(11, 11, "eleventh", 11, 11);
-        manager.add(sixth);
-        manager.add(seventh);
-        manager.add(eighth);
-        manager.add(ninth);
-        manager.add(tenth);
-        manager.add(eleventh);
+    public void shouldRemoveIfNotExist() {
+        int idToRemove = 6;
+        AfishaItem[] returned = new AfishaItem[] {first, second, third, forth, fifth};
+        doReturn(returned).when(repository).findAll();
+        doNothing().when(repository).removeById(idToRemove);
+        manager.removeById(idToRemove);
         AfishaItem[] actual = manager.getAll();
-        AfishaItem[] expected = new AfishaItem[] {eleventh, tenth, ninth, eighth, seventh, sixth, fifth, forth, third, second, null};
+        AfishaItem[] expected = new AfishaItem[]{fifth, forth, third, second, first};
         assertArrayEquals(expected, actual);
 
+        verify(repository).removeById(idToRemove);
     }
+
+
 }
