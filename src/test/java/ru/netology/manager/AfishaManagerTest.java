@@ -61,18 +61,18 @@ public class AfishaManagerTest {
         verify(repository).removeById(idToRemove);
     }
 
-//    @Test
-//    public void findById() {
-//        int idToFind = 3;
-//        AfishaItem[] returned = new AfishaItem[] {null, null, third, null, null};
-//        doReturn(returned).when(repository).findAll();
-//        doNothing().when(repository).findById(idToFind);
-//        manager.findById(idToFind);
-//        AfishaItem[] actual = manager.getAll();
-//        AfishaItem[] expected = new AfishaItem[] {null, null, third, null, null};
-//        assertArrayEquals(expected, actual);
-//        verify(repository).findById(idToFind);
-//    }
+    @Test
+    public void findById() {
+        int idToFind = 3;
+        AfishaItem[] returned = new AfishaItem[] {null, null, third, null, null};
+        doReturn(returned).when(repository).findAll();
+        doNothing().when(repository).findById(idToFind);
+        manager.findById(idToFind);
+        AfishaItem[] actual = manager.getAll();
+        AfishaItem[] expected = new AfishaItem[] {null, null, third, null, null};
+        assertArrayEquals(expected, actual);
+        verify(repository).findById(idToFind);
+    }
 
     @Test
     public void shouldRemoveIfNotExist() {

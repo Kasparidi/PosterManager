@@ -42,14 +42,14 @@ class AfishaRepositoryTestRepository {
         assertArrayEquals(expected, actual);
     }
 
-//    @Test
-//    void findById() {
-//        int idToFind = 4;
-//        afishaRepository.findById(idToFind);
-//        AfishaItem[] actual = afishaRepository.findAll();
-//        AfishaItem[] expected = new AfishaItem[] {null, null, null, forth, null};
-//        assertArrayEquals(expected, actual);
-//    }
+    @Test
+    void findById() {
+        int idToFind = 4;
+        afishaRepository.findById(idToFind);
+        AfishaItem[] actual = afishaRepository.findAll();
+        AfishaItem[] expected = new AfishaItem[] {null, null, null, forth, null};
+        assertArrayEquals(expected, actual);
+    }
 
 //    @Test
 //    void removeAll() {

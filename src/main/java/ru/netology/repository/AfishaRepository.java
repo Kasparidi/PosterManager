@@ -32,16 +32,14 @@ public class AfishaRepository {
         items = tmp;
     }
 
-//    public int findById(int id) {
-//        for (AfishaItem item : items) {
-//            if (item.getId() == id) {
-//                return item;
-//            }
-//        }
-//        return null;
-//    }
-
-
+    public int findById(int id) {
+        for (AfishaItem item : items) {
+            if (item.getId() == id) {
+                return item;
+            }
+        }
+        return null;
+    }
 
     public void removeAll() {
     }
