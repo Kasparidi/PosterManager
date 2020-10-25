@@ -6,7 +6,7 @@ import ru.netology.domain.AfishaItem;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class AfishaRepositoryTestRepository {
+class AfishaRepositoryTest {
     AfishaRepository afishaRepository = new AfishaRepository();
 
     AfishaItem first = new AfishaItem(1, 2, "first", "comedy", true);
@@ -33,6 +33,14 @@ class AfishaRepositoryTestRepository {
     }
 
     @Test
+    void findAll() {
+        afishaRepository.findAll();
+        AfishaItem[] actual = afishaRepository.findAll();
+        AfishaItem[] expected = new AfishaItem[] {first, second, third, forth, fifth};
+        assertArrayEquals(expected, actual);
+    }
+
+    @Test
     void removeById() {
         int idToRemove = 3;
         afishaRepository.removeById(idToRemove);
@@ -45,16 +53,25 @@ class AfishaRepositoryTestRepository {
     void findById() {
         int idToFind = 4;
         afishaRepository.findById(idToFind);
-        AfishaItem[] actual = afishaRepository.findAll();
-        AfishaItem[] expected = new AfishaItem[] {null, null, null, forth, null};
-        assertArrayEquals(expected, actual);
+        AfishaItem actual = afishaRepository.findById(idToFind);
+        AfishaItem expected = forth;
+        assertEquals(expected, actual);
     }
 
-//    @Test
-//    void removeAll() {
-//        afishaRepository.removeAll();
-//        AfishaItem[] actual = afishaRepository.findAll();
-//        AfishaItem[] expected = new AfishaItem[] {null, null, null, null, null};
-//        assertArrayEquals(expected, actual);
-//    }
+    @Test
+    void findByIdNotExist() {
+        int idToFind = 6;
+        afishaRepository.findById(idToFind);
+        AfishaItem actual = afishaRepository.findById(idToFind);
+        AfishaItem expected = null;
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    void removeAll() {
+        afishaRepository.removeAll();
+        AfishaItem[] actual = afishaRepository.findAll();
+        AfishaItem[] expected = {};
+        assertArrayEquals(expected, actual);
+    }
 }

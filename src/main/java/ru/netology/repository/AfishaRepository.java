@@ -1,7 +1,6 @@
 package ru.netology.repository;
 
 import ru.netology.domain.AfishaItem;
-import ru.netology.manager.AfishaManager;
 
 public class AfishaRepository {
     private AfishaItem[] items = new AfishaItem[0];
@@ -31,7 +30,7 @@ public class AfishaRepository {
         items = tmp;
     }
 
-    public int findById(int id) {
+    public AfishaItem findById(int id) {
         for (AfishaItem item : items) {
             if (item.getId() == id) {
                 return item;
