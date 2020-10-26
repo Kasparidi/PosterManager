@@ -4,6 +4,14 @@ import ru.netology.domain.PosterItem;
 
 public class PosterManager {
     private PosterItem[] items = new PosterItem[0];
+    private int afishaLength = 10;
+
+    PosterManager() {
+    }
+
+    public PosterManager(int afishaLength) {
+        this.afishaLength = afishaLength;
+    }
 
     public void add(PosterItem item) {
         int length = items.length + 1;
@@ -15,11 +23,11 @@ public class PosterManager {
     }
 
     public PosterItem[] getAll() {
-        PosterItem[] result = new PosterItem[items.length];
+        PosterItem[] result = new PosterItem[Math.min(items.length, afishaLength)];
         for (int i = 0; i < items.length; i++) {
             int index = items.length - i - 1;
             result[i] = items[index];
-            if (i >= 9) break;
+            if ( i >= 9) break;
         }
         return result;
     }
