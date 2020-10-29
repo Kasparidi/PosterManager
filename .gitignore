@@ -5,6 +5,7 @@ HELP.md
 build/
 target/
 
+
 ### STS ###
 .apt_generated
 .classpath
@@ -19,6 +20,7 @@ target/
 *.iws
 *.iml
 *.ipr
+ lombok.config
 out/
 
 ### NetBeans ###
