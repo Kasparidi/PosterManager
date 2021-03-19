@@ -1,3 +1,9 @@
+### DESCRIPTION
+На основе [проекта с лекции](https://github.com/netology-code/javaqa-code/tree/master/3.4_dependency) необходимо реализовать менеджер Афиши 
+(все фильмы хранятся внутри самого менеджера, без всякого репозитория):
+
+![img.png](src/main/resources/img.png)
+
 ### [TASK](https://github.com/netology-code/javaqa-homeworks/tree/master/dependency)
 #### #1
 1. Реализовать менеджер афиши, фильмы должны быть в менеджере без репозитория.
